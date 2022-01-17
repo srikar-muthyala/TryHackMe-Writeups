@@ -79,7 +79,17 @@ gaining access to ophelia accnt provides us with a password not associated with 
 We get access to flag3.
 
 
+Moving up a directory in FTP session, we see 
+drwxr-xr-x    2 1002     1002         4096 Sep 15 14:44 gravediggers
+drwxr-xr-x    2 1001     1001         4096 Sep 15 14:41 ophelia
+drwxr-xr-x    6 1000     1000         4096 Sep 16 06:27 ubuntu
 
+Getting into gravediggers,
+-rwxr-xr-x    1 0        0            1019 Sep 15 14:44 gravediggers.py
+-rwxr-xr-x    1 0        0             213 Sep 15 14:44 gravediggers.service
+-rwxr-xr-x    1 0        0          184147 Sep 15 14:44 hamlet.txt
+
+The content of gravediggers.py contains flag2.
 
 
 
