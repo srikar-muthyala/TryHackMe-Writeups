@@ -4,7 +4,7 @@ This is a fairly straightforward CTF-like room in which you will play with an un
 There's a total of six flags. You don't necessarily have to find them in order. (Flags: THM{#_flag})
 Please note that the machine takes a while to boot fully, and some services will only become available after a few minutes.
 
-Three flags have been found so far, more will be added soon.
+Will be adding information for remaining flags soon.
 
 Starting off by enumerating the machine with nmap scan, 
 nmap -sV -sC -oN nmap_scan -p- 10.10.225.34
