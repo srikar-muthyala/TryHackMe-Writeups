@@ -1,0 +1,86 @@
+Welcome to Hamlet! 
+
+This is a fairly straightforward CTF-like room in which you will play with an uncommon web application used in linguistic research. You will also learn a little bit about Docker. While there are CTF elements, there are quite a few "real" problems in here. Feel free to explore!
+There's a total of six flags. You don't necessarily have to find them in order. (Flags: THM{#_flag})
+Please note that the machine takes a while to boot fully, and some services will only become available after a few minutes.
+
+Starting off by enumerating the machine with nmap scan, 
+nmap -sV -sC -oN nmap_scan -p- 10.10.225.34
+
+
+While the previous scan was taking too long, I did another basic scan without -p- parameter showing a few open ports:
+
+21/tcp    open   ftp        vsftpd 3.0.3
+22/tcp    open   ssh        OpenSSH 7.6p1 Ubuntu 4ubuntu0.5 (Ubuntu Linux; protocol 2.0)
+80/tcp    open   http       lighttpd 1.4.45
+8000/tcp  open   http       Apache httpd 2.4.48 ((Debian))
+8080/tcp  open   http-proxy
+
+Anonymous login was enabled on FTP,
+-rwxr-xr-x    1 0        0             113 Sep 15 14:45 password-policy.md
+-rw-r--r--    1 0        0            1425 Sep 15 14:48 ufw.status
+
+Content of password-policy.md,
+# Password Policy
+
+## WebAnno
+
+New passwords should be:
+
+- lowercase
+- between 12 and 14 characters long
+
+Content of ufw.status,
+Status: active
+
+To                         Action      From
+--                         ------      ----
+20/tcp                     ALLOW       Anywhere                  
+21/tcp                     ALLOW       Anywhere                  
+22/tcp                     ALLOW       Anywhere                  
+80/tcp                     ALLOW       Anywhere                  
+501/tcp                    ALLOW       Anywhere                  
+8080/tcp                   ALLOW       Anywhere                  
+8000/tcp                   ALLOW       Anywhere                  
+1603/tcp                   ALLOW       Anywhere                  
+1564/tcp                   ALLOW       Anywhere                  
+50000:50999/tcp            ALLOW       Anywhere                  
+20/tcp (v6)                ALLOW       Anywhere (v6)             
+21/tcp (v6)                ALLOW       Anywhere (v6)             
+22/tcp (v6)                ALLOW       Anywhere (v6)             
+80/tcp (v6)                ALLOW       Anywhere (v6)             
+501/tcp (v6)               ALLOW       Anywhere (v6)             
+8080/tcp (v6)              ALLOW       Anywhere (v6)             
+8000/tcp (v6)              ALLOW       Anywhere (v6)             
+1603/tcp (v6)              ALLOW       Anywhere (v6)             
+1564/tcp (v6)              ALLOW       Anywhere (v6)             
+50000:50999/tcp (v6)       ALLOW       Anywhere (v6)
+
+This shows more open ports which were not detected by nmap.
+
+Browsing to port 80, we can see Micheal's alternate name as 'ghost'. And it says that he is obsessed with Hamlet and the vocabulary used by Shakespeare. 
+Directory enumeration reveals robots.txt, which contains flag-1.
+
+Webpage on port 8080 is a login page. and the title says "WebAnno - Log in"
+Using cewl to generate wordlist from the version of hamlet their org is using, with the password policy we found earlier,
+
+cewl -m 12 -w wordlist.txt --lowercase http://10.10.225.34/hamlet.txt
+
+We are presented with 75 words,
+
+wc -l wordlist.txt 
+75 wordlist.txt
+
+Brute forcing with Burp Suite gets us the access.
+
+We can change passwords for other users with ghost user.
+
+gaining access to ophelia accnt provides us with a password not associated with WebAnno, SSH did not work. Tried FTP and bingo!
+We get access to flag3.
+
+
+
+
+
+
+
