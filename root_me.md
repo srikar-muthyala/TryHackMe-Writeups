@@ -22,11 +22,12 @@ PORT   STATE SERVICE VERSION
 ```
 
 Browsing to port 80 reveals nothing but a simple web page. Trying directrory enumeration with dirsearch reveals few interesting directories, 
+```
 [09:20:02] 301 -  316B  - /uploads  ->  http://10.10.191.173/uploads/      
 [09:20:06] 301 -  312B  - /css  ->  http://10.10.191.173/css/              
 [09:20:10] 301 -  311B  - /js  ->  http://10.10.191.173/js/                
 [09:20:44] 301 -  314B  - /panel  ->  http://10.10.191.173/panel/
-
+```
 /panel allows file uploads and /uploads exposes uploads directory on web server.
 
 Uploading.php file did not work, tried bruteforcing extension and found .phtml is allowed.
