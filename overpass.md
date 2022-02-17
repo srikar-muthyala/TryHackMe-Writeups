@@ -6,7 +6,7 @@ thm{65c1aaf000506e56996822c6281e6bf7}
 ```
 
 
-1. Escalate your privileges and get the flag in root.txt
+2. Escalate your privileges and get the flag in root.txt
 ```
 thm{7f336f8c359dbac18d54fdd64ea753bb}
 ```
