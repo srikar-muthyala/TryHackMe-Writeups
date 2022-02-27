@@ -118,7 +118,7 @@ HOME=/home/challenge
 KUBERNETES_PORT_443_TCP=tcp://10.96.0.1:443
 LS_COLORS=
 GOLANG_VERSION=1.15.7
-FLAG=flag{5e7cc6165f6c2058b11710a26691bb6b}
+FLAG=flag{xxxxxxxxxxxxxxxxxxxxxxx}
 TERM=xterm-256color
 SHLVL=3
 SYRINGE_PORT_3000_TCP_PORT=3000
@@ -218,7 +218,7 @@ bash-5.1$ whoami
 grafana
 
 printenv
-FLAG=flag{288232b2f03b1ec422c5dae50f14061f}
+FLAG=flag{xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx}
 ```
 You can now close the Grafana pod shell and continue using the first one since it is more stable.
 
