@@ -113,7 +113,7 @@ nc -lnvp 4444
 # we get a windows shell
 # Browsing to C:\Users\Nekrotic\Desktop, we find user.txt and root.txt
 
-THM{64bca0843d535fa73eecdc59d27cbe26}       # user.txt
+THM{xxxxxxxxxxxxxxxxxxxxxxxxxxxx}       # user.txt
 
 # root.txt needs priv esc
 ```
@@ -175,11 +175,6 @@ whoami
 nt authority\system
 
 <V>> more root.txt
-THM{8c8bc5558f0f3f8060d00ca231a9fb5e}
+THM{xxxxxxxxxxxxxxxxxxxxxxxxxx}
 ```
 
-
-Root flag after successful exploitation,
-```
-THM{8c8bc5558f0f3f8060d00ca231a9fb5e}
-```
